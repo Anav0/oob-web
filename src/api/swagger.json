@@ -1,0 +1,370 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "OOB",
+    "description": "OOB documentation",
+    "contact": {
+      "name": "AuthorName",
+      "email": "AuthorEmail"
+    },
+    "license": {
+      "name": "Copyright 2021",
+      "url": "http://example.com"
+    },
+    "version": "1.0"
+  },
+  "paths": {
+    "/api/v1/conflicts/level/{level}": {
+      "get": {
+        "tags": [
+          "Conflicts"
+        ],
+        "parameters": [
+          {
+            "name": "level",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Conflict"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Conflict"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Conflict"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/conflicts/{id}": {
+      "get": {
+        "tags": [
+          "Conflicts"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "$ref": "#/components/schemas/Conflict"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Conflict"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Conflict"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/conflicts/{id}/units/deep/{maxLevel}": {
+      "get": {
+        "tags": [
+          "Conflicts"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          },
+          {
+            "name": "maxLevel",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UnitInConflict"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UnitInConflict"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/UnitInConflict"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Commander": {
+        "type": "object",
+        "properties": {
+          "Id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Name": {
+            "type": "string",
+            "nullable": true
+          },
+          "Rank": {
+            "$ref": "#/components/schemas/Rank"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Conflict": {
+        "type": "object",
+        "properties": {
+          "Id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Name": {
+            "type": "string",
+            "nullable": true
+          },
+          "Place": {
+            "$ref": "#/components/schemas/ConflictPlace"
+          },
+          "SubConflicts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Conflict"
+            },
+            "nullable": true
+          },
+          "Units": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UnitInConflict"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ConflictPlace": {
+        "type": "object",
+        "properties": {
+          "Id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Name": {
+            "type": "string",
+            "nullable": true
+          },
+          "Latitude": {
+            "type": "number",
+            "format": "double"
+          },
+          "Longitude": {
+            "type": "number",
+            "format": "double"
+          },
+          "Start": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "End": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ConflictSide": {
+        "enum": [
+          0,
+          1
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "Rank": {
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "Strength": {
+        "type": "object",
+        "properties": {
+          "Id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "StartedWith": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "Lost": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Unit": {
+        "type": "object",
+        "properties": {
+          "Id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Name": {
+            "type": "string",
+            "nullable": true
+          },
+          "Scale": {
+            "$ref": "#/components/schemas/UnitScale"
+          },
+          "Type": {
+            "$ref": "#/components/schemas/UnitType"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UnitInConflict": {
+        "type": "object",
+        "properties": {
+          "Id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "Unit": {
+            "$ref": "#/components/schemas/Unit"
+          },
+          "Commander": {
+            "$ref": "#/components/schemas/Commander"
+          },
+          "SubUnits": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UnitInConflict"
+            },
+            "nullable": true
+          },
+          "Strength": {
+            "$ref": "#/components/schemas/Strength"
+          },
+          "Side": {
+            "$ref": "#/components/schemas/ConflictSide"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UnitScale": {
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "UnitType": {
+        "enum": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "type": "integer",
+        "format": "int32"
+      }
+    }
+  }
+}

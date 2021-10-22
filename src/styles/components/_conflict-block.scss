@@ -1,0 +1,23 @@
+.conflict-block {
+  border: 4px $fg solid;
+  padding: 1rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &--selected {
+    border-color: $accent;
+    color: $accent;
+  }
+
+  &:hover {
+    border-color: $accent;
+    color: $accent;
+  }
+
+  &__name {
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+}

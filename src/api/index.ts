@@ -1,3 +1,7 @@
+import { Api } from "./Api";
 
-// eslint-disable-next-line import/no-anonymous-default-export
-export default {}
+const apiConfig = {
+    baseURL: process.env.REACT_APP_API_URL
+}
+
+export const api = new Api(apiConfig)
