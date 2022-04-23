@@ -1,0 +1,37 @@
+.landing {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  display: grid;
+  grid-gap: 2rem;
+  padding: 2rem;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+
+  &__propositions {
+    z-index: 3;
+    position: relative;
+    display: flex;
+    justify-content: space-evenly;
+    grid-column: 1/5;
+    grid-row: 1/4;
+  }
+
+  &__dim {
+    width: 100%;
+    height: 100%;
+    background-color: rgba($Dim, 0.93);
+    z-index: 2;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+
+  &__bg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    position: absolute;
+  }
+}

@@ -1,16 +1,11 @@
 // INFO: I seperated colors to more easily swap certain colors later on;
 // here it's a bit overkill but a good practice.
 
-$LightBlack: #0a0202c5;
-$Gray: #747474e3;
-$White: #ffffff;
-$Red: #c51a1a;
-$Purple: #3b38d3;
+$PolishRed: #de3434;
+$Gray: #bebebe;
+$Black: #0000;
+$White: #ffff;
 
-$accent: $Purple;
-$fg-alert: $Red;
-$fg-main: $LightBlack;
-$fg-secondary: $Gray;
-$bg-main: $White;
-$fg: black;
-$bg: white;
+$Accent: $PolishRed;
+$Fg-main: $White;
+$Dim: $Black;

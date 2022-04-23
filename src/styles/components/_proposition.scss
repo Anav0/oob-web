@@ -1,0 +1,15 @@
+.proposition {
+  display: flex;
+  flex-direction: column;
+  width: 10rem;
+
+  &__header {
+    color: $Accent;
+  }
+  &__desc {
+    color: $White;
+    text-align: justify;
+  }
+  &__img {
+  }
+}
