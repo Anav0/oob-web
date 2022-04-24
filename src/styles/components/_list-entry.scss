@@ -1,0 +1,22 @@
+.entry {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 2rem;
+  :hover {
+    opacity: 0.2;
+  }
+  a {
+    color: $Gray;
+    text-decoration: none;
+  }
+  &__arrow {
+    width: 10px;
+    height: 10px;
+    border: 2px $Gray solid;
+    rotate: 45deg;
+    border-left: 0;
+    border-bottom: 0;
+  }
+}

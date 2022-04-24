@@ -1,18 +1,34 @@
-import Proposition, { PropositionModel, PropositionProps } from "components/proposition";
-import React, { useEffect, useState } from "react";
+import Proposition, { PropositionProps } from "components/proposition";
+import units from "assets/images/units.png";
+import germans from "assets/images/germans.webp";
 
 function Landing() {
   const propositions: PropositionProps[] = [
     {
       desc: "Find detailed information about units history, composition, battles fought and many more",
       header: "Conflicts",
-      img: "Find detailed information about units history, composition, battles fought and many more",
-      propositions: [],
+      img: germans,
+      propositions: [
+        { link: "", name: "Second World War" },
+        { link: "", name: "The Great War" },
+        { link: "", name: "American Civil War" },
+        { link: "", name: "Russian Civil War" },
+      ],
     },
-    { desc: "adwadw", header: "Units", img: "awdadw", propositions: [] },
+    {
+      desc: "Find detailed information about units history, composition, battles fought and many more",
+      header: "Units",
+      img: units,
+      propositions: [
+        { link: "", name: "1 Panzer Division" },
+        { link: "", name: "7 Panzer Division" },
+        { link: "", name: "2 Infantry Division" },
+        { link: "", name: "365th Infantry Regiment" },
+      ],
+    },
   ];
 
-  let propositions_ui = propositions.map((x) => <Proposition {...x} />);
+  let propositions_ui = propositions.map((x, i) => <Proposition key={"proposition_ui_" + i} {...x} />);
 
   return (
     <div className="landing">

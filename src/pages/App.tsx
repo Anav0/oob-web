@@ -1,12 +1,15 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import React, { useEffect, useState } from "react";
 import Landing from "./landing";
+import { theme } from "themes";
+import { ThemeProvider } from "@mui/material";
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Landing />} />
-    </Routes>
+    <ThemeProvider theme={theme}>
+      <Routes>
+        <Route path="/" element={<Landing />} />
+      </Routes>
+    </ThemeProvider>
   );
 }
 
