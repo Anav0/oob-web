@@ -28,9 +28,10 @@ function Proposition({ img, header, desc, propositions }: PropositionProps) {
       <div className="proposition__header_wrapper">
         <h1 className="proposition__header">{header}</h1>
         <Autocomplete
+          fullWidth
           placeholder="Search..."
           options={options}
-          renderInput={(params) => <TextField {...params} label="Movie" />}
+          renderInput={(params) => <TextField {...params} variant="standard" label="Search..." />}
         />
       </div>
       <img src={img} alt="nic" className="proposition__img" />
