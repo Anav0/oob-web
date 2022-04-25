@@ -13,30 +13,6 @@ const theme = createTheme({
 
             }
         },
-        // MuiInputBase: {
-        //     styleOverrides: {
-        //         root: {
-        //             "&::before": {
-        //                 borderBottom: `1px solid ${colorInactive}`
-        //             }
-        //         }
-        //     }
-        // },
-        // MuiFormLabel: {
-        //     styleOverrides: {
-        //         root: {
-        //             color: colorInactive
-        //         }
-        //     }
-        // },
-        // MuiOutlinedInput: {
-        //     styleOverrides: {
-        //         notchedOutline: {
-        //             borderColor: colorInactive
-        //         }
-        //     }
-        // },
-
     },
     typography: {
         fontFamily: "Roboto Condensed"

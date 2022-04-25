@@ -16,15 +16,16 @@ export type PropositionProps = {
   header: string;
   img: string;
   desc: string;
+  className: string;
   propositions: PropositionModel[];
 };
 
-function Proposition({ img, header, desc, propositions }: PropositionProps) {
+function Proposition({ img, className, header, desc, propositions }: PropositionProps) {
   let entries = propositions.map((x) => <ListEntry {...x} />);
   let options = ["A", "B"];
 
   return (
-    <div className="proposition">
+    <div className={`proposition ${className}`}>
       <div className="proposition__header_wrapper">
         <h1 className="proposition__header">{header}</h1>
         <Autocomplete

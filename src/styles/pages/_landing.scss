@@ -2,39 +2,73 @@
   width: 100%;
   height: 100%;
   position: relative;
-  display: flex;
-  flex-direction: column;
-  padding: 1rem;
-
+  padding: 3rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(2, 1fr);
+  &__conflicts {
+    grid-column: 1/2;
+  }
+  &__units {
+    grid-column: 2/3;
+  }
+  &__quick {
+    grid-column: 1/2;
+    grid-row: 2/3;
+  }
   @include md {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    grid-gap: 1rem;
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+    grid-gap: 40px;
+
+    &__conflicts {
+      grid-column: 1/5;
+    }
+    &__units {
+      grid-column: 5/9;
+    }
+    &__quick {
+      grid-column: 1/4;
+      grid-row: 2/3;
+    }
   }
 
   @include lg {
-    grid-template-columns: repeat(8, 1fr);
-    grid-template-rows: repeat(4, 1fr);
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    grid-template-rows: 1fr;
+    grid-gap: 40px;
+
+    &__conflicts {
+      grid-column: 1/5;
+    }
+    &__units {
+      grid-column: 5/9;
+    }
+    &__quick {
+      grid-column: 10/12;
+      grid-row: 1/2;
+    }
   }
 
   @include xl {
     padding: 4rem 6rem;
-    grid-template-columns: repeat(12, 1fr);
     grid-template-rows: repeat(4, 1fr);
   }
 
   @include ul {
-    grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: repeat(4, 1fr);
+    &__conflicts {
+      grid-column: 1/4;
+    }
+    &__units {
+      grid-column: 4/7;
+    }
+    &__quick {
+      grid-column: 10/12;
+      grid-row: 1/2;
+    }
   }
-  &__propositions {
+
+  * {
     z-index: 3;
-    position: relative;
-    display: flex;
-    justify-content: space-evenly;
-    grid-column: 1/8;
-    grid-row: 1/4;
   }
 
   &__dim {
