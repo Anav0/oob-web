@@ -44,7 +44,7 @@
       grid-column: 5/9;
     }
     &__quick {
-      grid-column: 10/12;
+      grid-column: 10/13;
       grid-row: 1/2;
     }
   }
@@ -52,6 +52,16 @@
   @include xl {
     padding: 4rem 6rem;
     grid-template-rows: repeat(4, 1fr);
+    &__conflicts {
+      grid-column: 1/4;
+    }
+    &__units {
+      grid-column: 5/8;
+    }
+    &__quick {
+      grid-column: 10/12;
+      grid-row: 1/2;
+    }
   }
 
   @include ul {

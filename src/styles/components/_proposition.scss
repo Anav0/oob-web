@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   width: 100%;
+  overflow: visible;
 
   &__header_wrapper {
     display: grid;
@@ -20,10 +21,29 @@
     margin-bottom: 1rem;
   }
   &__img {
-    height: 100%;
+    height: 9rem;
     width: 100%;
     object-fit: cover;
+    overflow: visible;
     margin-bottom: 1rem;
+  }
+
+  @include md {
+    &__img {
+      height: 12rem;
+    }
+  }
+  @include lg {
+    &__img {
+      height: 13.5rem;
+    }
+  }
+
+  @include ul {
+    &__img {
+      height: 11.25rem;
+      width: 18rem;
+    }
   }
 
   button {
