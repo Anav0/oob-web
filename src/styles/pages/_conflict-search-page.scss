@@ -1,0 +1,45 @@
+.cs-page {
+  padding: 2rem;
+  z-index: 2;
+  display: grid;
+  width: 100%;
+  height: 100%;
+  grid-gap: 2rem;
+  grid-template-areas:
+    "search"
+    "results";
+
+  @include md {
+    grid-template-areas:
+      "search results results results"
+      "search results results results";
+  }
+  @include lg {
+  }
+  @include xl {
+  }
+
+  * {
+    z-index: 2;
+  }
+
+  &__search {
+    grid-area: search;
+    overflow: scroll;
+  }
+  &__results {
+    grid-area: results;
+    height: 100%;
+    width: 100%;
+    overflow: scroll;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+
+    button[type="submit"],
+    .MuiFormControl-root {
+      margin-top: 2rem;
+    }
+  }
+}

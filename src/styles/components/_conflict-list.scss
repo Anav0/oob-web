@@ -1,0 +1,27 @@
+.unitsLoading,
+.conflict-list__units {
+  margin-left: 8rem;
+}
+.conflict-list {
+  &__units {
+    display: flex;
+    overflow: scroll;
+    li {
+      padding: 0.25rem;
+    }
+  }
+}
+.conflict-item {
+  &--operation {
+    // background-color: red;
+  }
+  &--battle {
+    // background-color: yellow;
+  }
+  &--command {
+    // background-color: orange;
+  }
+  &--unit {
+    // background-color: turquoise;
+  }
+}

@@ -17,10 +17,11 @@ export type PropositionProps = {
   img: string;
   desc: string;
   className: string;
+  searchLink: string;
   propositions: PropositionModel[];
 };
 
-function Proposition({ img, className, header, desc, propositions }: PropositionProps) {
+function Proposition({ searchLink, img, className, header, desc, propositions }: PropositionProps) {
   let entries = propositions.map((x) => <ListEntry {...x} />);
   let options = ["A", "B"];
 
@@ -38,7 +39,7 @@ function Proposition({ img, className, header, desc, propositions }: Proposition
       <img src={img} alt="nic" className="proposition__img" />
       <p className="proposition__desc">{desc}</p>
       {entries}
-      <Button size="large" variant="outlined">
+      <Button href={searchLink} size="large" variant="outlined">
         Advanced search
       </Button>
     </div>

@@ -23,22 +23,25 @@
 }
 
 h1 {
-  font-size: 2.25rem;
+  font-size: 2.25rem !important;
 }
 h2 {
-  font-size: 2rem;
+  font-size: 2rem !important;
 }
 h3 {
-  font-size: 1.875rem;
+  font-size: 1.875rem !important;
 }
 h4 {
-  font-size: 1.625rem;
+  font-size: 1.625rem !important;
 }
 h5 {
-  font-size: 1.375rem;
+  font-size: 1.375rem !important;
 }
 h6 {
-  font-size: 1.375rem;
+  font-size: 1.375rem !important;
+}
+button {
+  text-transform: none;
 }
 
 #root,
@@ -67,19 +70,19 @@ html {
   }
 }
 
-button {
-  border: 2px solid $White;
-  color: $White;
-  border-radius: 5px;
-  background: transparent;
-  height: 2.87rem;
-  width: 13.6rem;
-  font-size: 1.375rem;
-  cursor: pointer;
-}
-button:hover {
-  opacity: 0.8;
-}
+// button {
+//   border: 2px solid $White;
+//   color: $White;
+//   border-radius: 5px;
+//   background: transparent;
+//   height: 2.87rem;
+//   width: 13.6rem;
+//   font-size: 1.375rem;
+//   cursor: pointer;
+// }
+// button:hover {
+//   opacity: 0.8;
+// }
 
 .demo {
   padding: 2rem;
@@ -90,4 +93,9 @@ button:hover {
   width: 100vw;
   height: 100vh;
   background-color: orange;
+}
+
+ul,
+ol {
+  list-style: none;
 }

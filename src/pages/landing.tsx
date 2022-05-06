@@ -37,15 +37,9 @@ function Landing() {
 
   return (
     <div className="landing">
-      <Proposition className="landing__conflicts" {...conflictProposition} />
-      <Proposition className="landing__units" {...unitsProposition} />
+      <Proposition searchLink="/conflict/search" className="landing__conflicts" {...conflictProposition} />
+      <Proposition searchLink="/unit/search" className="landing__units" {...unitsProposition} />
       <Quick className="landing__quick" header="Quick" propositions={quickPropositions} />
-      <div className="landing__dim" />
-      <img
-        src="https://cdn.cloudflare.steamstatic.com/steamcommunity/public/images/items/919640/88869b956ebd5f1679678f5ff04dc2bf54e0ff00.jpg"
-        className="landing__bg"
-        alt="nic"
-      />
     </div>
   );
 }
