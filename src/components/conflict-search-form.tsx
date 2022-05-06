@@ -17,20 +17,6 @@ type ConflictSearchComponentProps = {
 const ConflictSearchComponent = ({ callback }: ConflictSearchComponentProps) => {
   const [errors, setErrors] = useState<FormikErrors<ConflictSearchPayload>>({});
 
-  const searchPlaces = async (phrase: string): Promise<Place[]> => {
-    const places: Place[] = [
-      { id: 0, name: "Easter Front" },
-      { id: 1, name: "Pacific" },
-      { id: 2, name: "Afica" },
-    ];
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        let filtered = places.filter((x) => x.name.toLowerCase().includes(phrase));
-        resolve(filtered);
-      }, 200);
-    });
-  };
-
   return (
     <LocalizationProvider dateAdapter={AdapterMoment}>
       <Formik
@@ -100,9 +86,11 @@ const ConflictSearchComponent = ({ callback }: ConflictSearchComponentProps) => 
               fieldAttr={{
                 name: "placeId",
                 id: "placeId",
-                getOptionLabel: (option: Place) => option.name,
+                getOptionLabel: (option: Place) => option.Name,
               }}
-              fetch={searchPlaces}
+              fetch={(phrase) => {
+                return api.place.search({ name: phrase, limit: 20, page: 0 });
+              }}
             />
             <LoadingButton type="submit" loading={isSubmitting} loadingPosition="center" variant="outlined">
               Search

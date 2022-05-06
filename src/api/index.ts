@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ConflictSearchPayload, Conflict, Place } from "models/types";
+import { ConflictSearchPayload, Conflict, Place, PlaceSearchPayload } from "models/types";
 
 const instance = axios.create({
     baseURL: process.env.REACT_APP_API_URL,
@@ -30,9 +30,15 @@ class ConflictApi {
         return instance.get<number, Conflict>(`/conflicts/detail?id=${id}`);
     }
 }
+class PlaceApi {
+    async search(payload: PlaceSearchPayload) {
+        return instance.post<PlaceSearchPayload, Place[]>('/places/search', payload);
+    }
+}
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
     conflicts: new ConflictApi(),
+    place: new PlaceApi(),
 }
 

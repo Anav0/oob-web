@@ -1,8 +1,16 @@
+import { PopperPlacementType } from "@mui/material";
 import { ParsedCommandLine, SolutionBuilder, UnionOrIntersectionTypeNode } from "typescript";
 
+export type PlaceType = {}
+
 export type Place = {
-    id: number;
-    name: string;
+    Id: number;
+    Name: string;
+    Desc: string;
+    Parent?: Place,
+    ParentId?: number,
+    Type?: PlaceType,
+    TypeId?: number,
 };
 
 export interface ConflictSearchPayload {
@@ -12,6 +20,12 @@ export interface ConflictSearchPayload {
     parentId?: any;
     from?: Date;
     until?: Date;
+    limit: number,
+    page: number,
+}
+
+export interface PlaceSearchPayload {
+    name: string;
     limit: number,
     page: number,
 }
