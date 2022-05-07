@@ -1,3 +1,5 @@
+import { RefactorActionInfo } from "typescript";
+
 /* eslint-disable array-callback-return */
 export type PlaceType = {}
 
@@ -83,4 +85,22 @@ export function fixDates(results: Conflict[]) {
         if (x.Until) x.Until = new Date(x.Until);
         fixDates(x.Children);
     });
+}
+
+export class TimelinePeriod {
+    name!: string;
+    sub!: string;
+    color!: string;
+    start!: Date;
+    end!: Date;
+}
+
+export class TimelineEvent {
+    name: string;
+    //TODO: Chage to JSX type
+    icon: any;
+    constructor(name: string, icon: any) {
+        this.name = name;
+        this.icon = icon;
+    }
 }
