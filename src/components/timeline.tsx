@@ -1,6 +1,7 @@
 import { TimelineEvent, TimelinePeriod } from "models/types";
 import moment from "moment";
 import React from "react";
+import Period from "./period";
 
 type TimelineProps = {
   start: Date;
@@ -19,8 +20,6 @@ export const Timeline = (props: TimelineProps) => {
   }
   lines++;
 
-  console.log(`Lines: ${lines}`);
-
   const divisiors = [];
   let columns = "";
   let counter = 1;
@@ -30,13 +29,28 @@ export const Timeline = (props: TimelineProps) => {
     counter += 2;
   }
   divisiors.pop();
-  console.log(`Divisors: ${divisiors.length}`);
-  console.log(`Columns: ${counter - 1}`);
+
+  let periods = [];
+  for (let period of props.periods || []) {
+    let start: any = Math.round(moment.duration(moment(period.start).diff(s_m)).asMonths());
+    start = start * 2;
+
+    if (start < 0) {
+      throw new Error(`Period start date cannot be sonner then overall start: ${period.start} is sonner than ${s_m}`);
+    }
+    let span = Math.round(moment.duration(moment(period.end).diff(moment(period.start))).asMonths()) * 2;
+    let end = span + start;
+    let periodUi = <Period period={period} style={{ gridColumn: `${start + 1}/${end}` }} />;
+    periods.push(periodUi);
+  }
 
   return (
     <div className="timeline">
       <div style={{ gridTemplateColumns: columns }} className="timeline__line">
         {divisiors}
+      </div>
+      <div style={{ gridTemplateColumns: columns }} className="timeline__periods">
+        {periods}
       </div>
     </div>
   );

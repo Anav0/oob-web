@@ -1,5 +1,6 @@
 import { Select, MenuItem, Typography } from "@mui/material";
 import { Timeline } from "components/timeline";
+import { TimelinePeriod } from "models/types";
 import React, { Component, useState } from "react";
 import { useParams } from "react-router-dom";
 
@@ -15,6 +16,35 @@ const UnitDetails = () => {
       return <span>map</span>;
     }
   };
+
+  const start = new Date(1940, 1, 1);
+  const end = new Date(1944, 1, 1);
+  const periods: TimelinePeriod[] = [
+    {
+      name: "Wallon Legion",
+      sub: "Created",
+      color: "#FDDA24",
+      border: "#FDDA24",
+      start: new Date(1940, 1, 1),
+      end: new Date(1941, 1, 1),
+    },
+    {
+      name: "Infanterie Battalion 373",
+      sub: "Joined Wermaht",
+      color: "#2C342A",
+      border: "#2c342a",
+      start: new Date(1941, 1, 1),
+      end: new Date(1942, 6, 1),
+    },
+    {
+      name: "SS-SturmBrigade Wallonien",
+      sub: "Joined SS",
+      color: "#0000",
+      border: "#ffff",
+      start: new Date(1942, 7, 1),
+      end: new Date(1944, 1, 1),
+    },
+  ];
 
   const url =
     "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/28._SS-Freiwilligen-Grenadier-Division%2C_%E2%80%9EWallonien%E2%80%9D.svg/1920px-28._SS-Freiwilligen-Grenadier-Division%2C_%E2%80%9EWallonien%E2%80%9D.svg.png";
@@ -49,7 +79,7 @@ const UnitDetails = () => {
         </Select>
         {getSectionUi(selectedSection)}
       </section>
-      <Timeline start={new Date(1940, 1, 1)} end={new Date(1942, 1, 15)} />
+      <Timeline periods={periods} start={start} end={end} />
     </div>
   );
 };

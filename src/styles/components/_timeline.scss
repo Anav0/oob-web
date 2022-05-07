@@ -6,6 +6,11 @@
     height: 30px;
     background-color: rgba($Gray, 0.2);
   }
+  &__periods {
+    display: grid;
+    grid-template-rows: 1fr;
+    margin-top: 0.6rem;
+  }
   &__divisior {
     height: 100%;
     width: 1px;

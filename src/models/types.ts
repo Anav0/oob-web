@@ -91,6 +91,7 @@ export class TimelinePeriod {
     name!: string;
     sub!: string;
     color!: string;
+    border!: string;
     start!: Date;
     end!: Date;
 }

@@ -31,6 +31,11 @@
     z-index: 2;
   }
 
+  &__period {
+    display: flex;
+    flex-direction: column;
+  }
+
   &__insignia {
     object-fit: cover;
     height: 110px;
