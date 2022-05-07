@@ -49,7 +49,7 @@ const UnitDetails = () => {
         </Select>
         {getSectionUi(selectedSection)}
       </section>
-      <Timeline start={new Date(1940, 1, 1)} end={new Date(1940, 12, 15)} />
+      <Timeline start={new Date(1940, 1, 1)} end={new Date(1942, 1, 15)} />
     </div>
   );
 };

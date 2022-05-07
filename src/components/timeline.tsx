@@ -19,14 +19,19 @@ export const Timeline = (props: TimelineProps) => {
   }
   lines++;
 
+  console.log(`Lines: ${lines}`);
+
   const divisiors = [];
   let columns = "";
-  let counter = 0;
+  let counter = 1;
   for (let i = 0; i < lines; i++) {
     divisiors[i] = <div style={{ gridColumn: `${counter + 1}/${counter + 2}` }} className="timeline__divisior"></div>;
     columns += "1fr auto ";
     counter += 2;
   }
+  divisiors.pop();
+  console.log(`Divisors: ${divisiors.length}`);
+  console.log(`Columns: ${counter - 1}`);
 
   return (
     <div className="timeline">

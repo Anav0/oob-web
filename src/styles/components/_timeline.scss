@@ -4,12 +4,11 @@
     display: grid;
     grid-template-rows: 1fr;
     height: 30px;
-    background-color: #bebebe;
-    opacity: 0.2;
+    background-color: rgba($Gray, 0.2);
   }
   &__divisior {
     height: 100%;
-    width: 2px;
-    background-color: red;
+    width: 1px;
+    background-color: $Gray;
   }
 }
