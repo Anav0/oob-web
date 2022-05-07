@@ -4,6 +4,7 @@ import ComponentsDemo from "./components";
 import { theme } from "themes";
 import { ThemeProvider } from "@mui/material";
 import { ConflictSearchPage } from "./conflict-search-page";
+import UnitDetails from "./unit-details";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       />
       <Routes>
         <Route path="/" element={<Landing />} />
+        <Route path="/unit/:id" element={<UnitDetails />} />
         <Route path="/demo" element={<ComponentsDemo />} />
         <Route path="/conflict/search" element={<ConflictSearchPage />} />
       </Routes>

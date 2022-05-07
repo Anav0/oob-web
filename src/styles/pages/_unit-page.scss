@@ -1,0 +1,62 @@
+.up {
+  display: grid;
+  height: 100%;
+  width: 100%;
+  padding: 2rem;
+  grid-gap: 1rem;
+  grid-template-rows: auto auto 1fr auto;
+  grid-template-areas:
+    "header header header header"
+    "desc desc desc desc"
+    "section section section section"
+    "timeline timeline timeline timeline";
+
+  @include lg {
+    grid-template-rows: auto 1fr 1fr auto;
+    grid-template-areas:
+      "header header section section"
+      "desc desc section section"
+      "desc desc section section"
+      "timeline timeline timeline timeline";
+
+    &__insignia {
+      height: 210px;
+    }
+    &__desc {
+      max-width: 80ch;
+    }
+  }
+
+  * {
+    z-index: 2;
+  }
+
+  &__insignia {
+    object-fit: cover;
+    height: 110px;
+    margin-right: 2rem;
+  }
+
+  &__desc {
+    grid-area: desc;
+    text-align: justify;
+  }
+
+  &__header {
+    h1 {
+      font-weight: bold;
+    }
+    grid-area: header;
+    display: flex;
+  }
+
+  &__section {
+    grid-area: section;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .timeline {
+    grid-area: timeline;
+  }
+}
