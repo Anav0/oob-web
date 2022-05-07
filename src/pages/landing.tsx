@@ -1,7 +1,7 @@
-import Proposition, { PropositionProps } from "components/proposition";
+import Proposition from "components/proposition";
 import units from "assets/images/units.png";
 import germans from "assets/images/germans.webp";
-import { Quick } from "components/quick";
+import { QuickAccess } from "components/quick-access";
 
 function Landing() {
   const conflictProposition = {
@@ -39,7 +39,7 @@ function Landing() {
     <div className="landing">
       <Proposition searchLink="/conflict/search" className="landing__conflicts" {...conflictProposition} />
       <Proposition searchLink="/unit/search" className="landing__units" {...unitsProposition} />
-      <Quick className="landing__quick" header="Quick" propositions={quickPropositions} />
+      <QuickAccess className="landing__quick" header="Quick" propositions={quickPropositions} />
     </div>
   );
 }

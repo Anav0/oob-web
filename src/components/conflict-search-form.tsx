@@ -7,14 +7,13 @@ import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 import AsyncAutocomplete from "./async-autocomplete";
 import { ConflictSearchPayload, Conflict, fixDates, Place } from "models/types";
 import api from "api";
-import { EuroSymbolTwoTone } from "@mui/icons-material";
 import { useState } from "react";
 
-type ConflictSearchComponentProps = {
+type ConflictSearchProps = {
   callback: (results: Conflict[]) => void;
 };
 
-const ConflictSearchComponent = ({ callback }: ConflictSearchComponentProps) => {
+const ConflictSearch = ({ callback }: ConflictSearchProps) => {
   const [errors, setErrors] = useState<FormikErrors<ConflictSearchPayload>>({});
 
   return (
@@ -34,7 +33,6 @@ const ConflictSearchComponent = ({ callback }: ConflictSearchComponentProps) => 
         }
         validate={(values) => {
           setErrors({});
-          console.log(values);
 
           if (values.from && values.until) {
             if (values.from > values.until) {
@@ -76,7 +74,7 @@ const ConflictSearchComponent = ({ callback }: ConflictSearchComponentProps) => 
                 id: "parentId",
                 getOptionLabel: (option: Conflict) => option.Name,
               }}
-              fetch={(phrase) => {
+              fetch={(phrase: string) => {
                 return api.conflicts.search({ name: phrase, limit: 20, page: 0 });
               }}
             />
@@ -88,7 +86,7 @@ const ConflictSearchComponent = ({ callback }: ConflictSearchComponentProps) => 
                 id: "placeId",
                 getOptionLabel: (option: Place) => option.Name,
               }}
-              fetch={(phrase) => {
+              fetch={(phrase: string) => {
                 return api.place.search({ name: phrase, limit: 20, page: 0 });
               }}
             />
@@ -102,4 +100,4 @@ const ConflictSearchComponent = ({ callback }: ConflictSearchComponentProps) => 
   );
 };
 
-export default ConflictSearchComponent;
+export default ConflictSearch;

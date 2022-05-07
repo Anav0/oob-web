@@ -8,7 +8,7 @@ type QuickProps = {
   className: string;
 };
 
-export const Quick = ({ className, header, propositions }: QuickProps) => {
+export const QuickAccess = ({ className, header, propositions }: QuickProps) => {
   let entries = propositions.map((x) => <ListEntry {...x} />);
   return (
     <div className={`propositon ${className}`}>

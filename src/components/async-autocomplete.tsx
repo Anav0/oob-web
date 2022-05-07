@@ -1,26 +1,12 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { CircularProgress, TextField } from "@mui/material";
-import { ErrorMessage, Field } from "formik";
-import { Autocomplete, AutocompleteProps } from "formik-mui";
+import { Field } from "formik";
+import { Autocomplete } from "formik-mui";
 import debounce from "lodash.debounce";
 import React, { useMemo } from "react";
 import { useEffect, useState } from "react";
 
-type AsyncAutocompleteProps<T> = {
-  label: string;
-  placeholder?: string;
-  delay?: number;
-  fetch: (phrase: string) => Promise<T[]>;
-  options?: (option: T) => any;
-  fieldAttr: any;
-};
-
-export default function AsyncAutocomplete<T>({
-  label,
-  placeholder,
-  delay,
-  fetch,
-  fieldAttr,
-}: AsyncAutocompleteProps<T>) {
+export default function AsyncAutocomplete<T>({ label, placeholder, delay, fetch, ...rest }: any) {
   const [loading, setLoading] = useState(false);
   const [phrase, setPhrase] = useState("");
   const [options, setOptions] = useState<readonly T[]>([]);
@@ -54,7 +40,7 @@ export default function AsyncAutocomplete<T>({
   return (
     <Field
       component={Autocomplete}
-      {...fieldAttr}
+      {...rest}
       options={options}
       loading={loading}
       renderInput={(params: any) => (
@@ -62,7 +48,6 @@ export default function AsyncAutocomplete<T>({
           placeholder={placeholder}
           {...params}
           label={label}
-          name={fieldAttr.name}
           onChange={(e: any) => {
             setPhrase(e.target.value);
           }}

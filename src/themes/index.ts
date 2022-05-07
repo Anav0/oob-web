@@ -1,7 +1,5 @@
-import { createTheme, PaletteColorOptions } from "@mui/material";
-import { orange, red } from "@mui/material/colors";
+import { createTheme } from "@mui/material";
 import type { } from '@mui/lab/themeAugmentation';
-import { isWhiteSpaceLike } from "typescript";
 
 const theme = createTheme({
     components: {

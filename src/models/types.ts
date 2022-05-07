@@ -1,6 +1,4 @@
-import { PopperPlacementType } from "@mui/material";
-import { ParsedCommandLine, SolutionBuilder, UnionOrIntersectionTypeNode } from "typescript";
-
+/* eslint-disable array-callback-return */
 export type PlaceType = {}
 
 export type Place = {

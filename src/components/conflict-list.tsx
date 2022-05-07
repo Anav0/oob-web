@@ -1,19 +1,14 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { ExpandLess, ExpandMore } from "@mui/icons-material";
 import {
-  Avatar,
-  Button,
-  Checkbox,
   CircularProgress,
   Collapse,
-  Divider,
   IconButton,
   List,
   ListItem,
-  ListItemAvatar,
   ListItemButton,
   ListItemIcon,
   ListItemText,
-  Paper,
   Typography,
 } from "@mui/material";
 import { Conflict, UnitsInConflict } from "models/types";
