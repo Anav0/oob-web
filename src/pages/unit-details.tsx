@@ -17,23 +17,24 @@ const UnitDetails = () => {
     }
   };
 
-  const start = new Date(1940, 1, 1);
-  const end = new Date(1944, 1, 1);
+  //@Info: JS months are zero based
+  const start = new Date(1940, 0, 1);
+  const end = new Date(1944, 0, 1);
   const periods: TimelinePeriod[] = [
     {
       name: "Wallon Legion",
       sub: "Created",
       color: "#FDDA24",
       border: "#FDDA24",
-      start: new Date(1940, 1, 1),
-      end: new Date(1941, 1, 1),
+      start: new Date(1940, 0, 1),
+      end: new Date(1941, 0, 1),
     },
     {
       name: "Infanterie Battalion 373",
       sub: "Joined Wermaht",
       color: "#2C342A",
       border: "#2c342a",
-      start: new Date(1941, 1, 1),
+      start: new Date(1941, 0, 1),
       end: new Date(1942, 6, 1),
     },
     {
@@ -41,8 +42,8 @@ const UnitDetails = () => {
       sub: "Joined SS",
       color: "#0000",
       border: "#ffff",
-      start: new Date(1942, 7, 1),
-      end: new Date(1944, 1, 1),
+      start: new Date(1942, 6, 1),
+      end: new Date(1944, 0, 1),
     },
   ];
 

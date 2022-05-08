@@ -1,6 +1,6 @@
 import { TimelineEvent, TimelinePeriod } from "models/types";
 import moment from "moment";
-import React from "react";
+import React, { useState } from "react";
 import Period from "./period";
 
 type TimelineProps = {
@@ -10,7 +10,10 @@ type TimelineProps = {
   periods?: TimelinePeriod[];
   starting_date?: Date;
 };
+
 export const Timeline = (props: TimelineProps) => {
+  const [selected, setSelcted] = useState<number>();
+
   let s_m = moment(props.start);
   let e_m = moment(props.end);
   let lines = Math.round(moment.duration(e_m.diff(s_m)).asMonths());
@@ -20,15 +23,22 @@ export const Timeline = (props: TimelineProps) => {
   }
   lines++;
 
-  const divisiors = [];
+  const combined = [];
   let columns = "";
-  let counter = 1;
-  for (let i = 0; i < lines; i++) {
-    divisiors[i] = <div style={{ gridColumn: `${counter + 1}/${counter + 2}` }} className="timeline__divisior"></div>;
+  for (let i = 0; i < lines * 2; i += 2) {
     columns += "1fr auto ";
-    counter += 2;
+    const opacity = selected === i ? 0.8 : 0.0;
+    combined.push(
+      <div
+        onClick={() => {
+          setSelcted(i);
+        }}
+        className="timeline__month"
+        style={{ opacity: opacity, gridColumn: `${i + 1}/${i + 2}` }}
+      ></div>
+    );
+    combined.push(<div style={{ gridColumn: `${i + 2}/${i + 3}` }} className="timeline__divisior"></div>);
   }
-  divisiors.pop();
 
   let periods = [];
   for (let period of props.periods || []) {
@@ -47,7 +57,7 @@ export const Timeline = (props: TimelineProps) => {
   return (
     <div className="timeline">
       <div style={{ gridTemplateColumns: columns }} className="timeline__line">
-        {divisiors}
+        {combined}
       </div>
       <div style={{ gridTemplateColumns: columns }} className="timeline__periods">
         {periods}

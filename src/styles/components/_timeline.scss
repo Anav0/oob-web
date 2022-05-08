@@ -16,4 +16,14 @@
     width: 1px;
     background-color: $Gray;
   }
+  &__month {
+    background-color: white;
+    opacity: 0;
+    cursor: pointer;
+    &:hover {
+      opacity: 0.3;
+      height: 100%;
+      width: 100%;
+    }
+  }
 }
