@@ -1,5 +1,6 @@
+import { AdfScannerTwoTone } from "@mui/icons-material";
 import { TimelineEvent, TimelinePeriod } from "models/types";
-import moment from "moment";
+import moment, { months } from "moment";
 import React, { useState } from "react";
 import Period from "./period";
 
@@ -9,10 +10,10 @@ type TimelineProps = {
   events?: TimelineEvent[];
   periods?: TimelinePeriod[];
   starting_date?: Date;
+  onSelection?: (date: Date, period?: TimelinePeriod) => void;
 };
-
 export const Timeline = (props: TimelineProps) => {
-  const [selected, setSelcted] = useState<number>();
+  const [selectedMonth, setSelectedMonth] = useState<number>(0);
 
   let s_m = moment(props.start);
   let e_m = moment(props.end);
@@ -27,11 +28,20 @@ export const Timeline = (props: TimelineProps) => {
   let columns = "";
   for (let i = 0; i < lines * 2; i += 2) {
     columns += "1fr auto ";
-    const opacity = selected === i ? 0.8 : 0.0;
+    const opacity = selectedMonth === i ? 0.5 : 0.0;
+
     combined.push(
       <div
         onClick={() => {
-          setSelcted(i);
+          setSelectedMonth(i);
+
+          if (!props.onSelection) return;
+
+          if (!props.periods) return;
+          let selectedMonth = s_m.add(i / 2, "months").toDate();
+          let period = props.periods.find((x) => x.start <= selectedMonth && x.end > selectedMonth);
+
+          props.onSelection(selectedMonth, period);
         }}
         className="timeline__month"
         style={{ opacity: opacity, gridColumn: `${i + 1}/${i + 2}` }}

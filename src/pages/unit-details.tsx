@@ -80,7 +80,14 @@ const UnitDetails = () => {
         </Select>
         {getSectionUi(selectedSection)}
       </section>
-      <Timeline periods={periods} start={start} end={end} />
+      <Timeline
+        onSelection={(date, period) => {
+          console.log(date, period);
+        }}
+        periods={periods}
+        start={start}
+        end={end}
+      />
     </div>
   );
 };
