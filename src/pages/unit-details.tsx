@@ -5,7 +5,8 @@ import React, { Component, useState } from "react";
 import { useParams } from "react-router-dom";
 
 const UnitDetails = () => {
-  const { id } = useParams();
+  const { id, date } = useParams();
+
   const [selectedSection, setSelectedSection] = useState("oob");
 
   const getSectionUi = (sectionName: string) => {
@@ -46,6 +47,11 @@ const UnitDetails = () => {
       end: new Date(1944, 0, 1),
     },
   ];
+  let start_at_point = periods[0].start;
+  if (date) {
+    start_at_point = new Date(date);
+  }
+  console.log(date, start_at_point);
 
   const url =
     "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/28._SS-Freiwilligen-Grenadier-Division%2C_%E2%80%9EWallonien%E2%80%9D.svg/1920px-28._SS-Freiwilligen-Grenadier-Division%2C_%E2%80%9EWallonien%E2%80%9D.svg.png";
@@ -87,6 +93,7 @@ const UnitDetails = () => {
         periods={periods}
         start={start}
         end={end}
+        starting_date={start_at_point}
       />
     </div>
   );

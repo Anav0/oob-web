@@ -18,7 +18,7 @@ function App() {
       />
       <Routes>
         <Route path="/" element={<Landing />} />
-        <Route path="/unit/:id" element={<UnitDetails />} />
+        <Route path="/unit/:id/:date" element={<UnitDetails />} />
         <Route path="/demo" element={<ComponentsDemo />} />
         <Route path="/conflict/search" element={<ConflictSearchPage />} />
       </Routes>
