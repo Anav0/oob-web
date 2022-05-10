@@ -2,18 +2,19 @@ import { Select, MenuItem, Typography } from "@mui/material";
 import { Timeline } from "components/timeline";
 import { TimelinePeriod } from "models/types";
 import React, { Component, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 const UnitDetails = () => {
+  const navigate = useNavigate();
   const { id, date } = useParams();
 
   const [selectedSection, setSelectedSection] = useState("oob");
 
   const getSectionUi = (sectionName: string) => {
-    if (sectionName == "oob") {
+    if (sectionName === "oob") {
       return <span>OOB</span>;
     }
-    if (sectionName == "map") {
+    if (sectionName === "map") {
       return <span>map</span>;
     }
   };
@@ -47,22 +48,33 @@ const UnitDetails = () => {
       end: new Date(1944, 0, 1),
     },
   ];
-  let start_at_point = periods[0].start;
+  let start_at_period = periods[0];
+  let initial_start_at_point = start_at_period.start;
   if (date) {
-    start_at_point = new Date(date);
+    initial_start_at_point = new Date(date);
+    let x = periods.find((x) => x.start <= initial_start_at_point && x.end > initial_start_at_point);
+    if (x) start_at_period = x;
   }
-  console.log(date, start_at_point);
+
+  const [selectedPeriod, setSelectedPeriod] = useState(start_at_period);
+  const [start_at_point, setStartAtPoint] = useState(initial_start_at_point);
 
   const url =
     "https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/28._SS-Freiwilligen-Grenadier-Division%2C_%E2%80%9EWallonien%E2%80%9D.svg/1920px-28._SS-Freiwilligen-Grenadier-Division%2C_%E2%80%9EWallonien%E2%80%9D.svg.png";
+  let options: any = { year: "numeric", day: "2-digit", month: "long" };
+
+  let date_str = `${selectedPeriod.start.toLocaleDateString("pl", options)}`;
+  if (selectedPeriod.end) {
+    date_str += ` - ${selectedPeriod.end.toLocaleDateString("pl", options)}`;
+  }
 
   return (
     <div className="up">
       <div className="up__header">
         <img className="up__insignia" alt="Image showcasing units insignia" src={url}></img>
         <div>
-          <Typography variant="h1">28th SS Division</Typography>
-          <Typography variant="subtitle1">28th March 1941 - 14th May 1944</Typography>
+          <Typography variant="h1">{selectedPeriod.name}</Typography>
+          <Typography variant="subtitle1">{date_str}</Typography>
         </div>
       </div>
       <Typography className="up__desc" paragraph>
@@ -88,12 +100,14 @@ const UnitDetails = () => {
       </section>
       <Timeline
         onSelection={(date, period) => {
-          console.log(date, period);
+          navigate(`/unit/${id}/${date.getFullYear()}-${date.getDate()}-${date.getMonth() + 1}`);
+          setStartAtPoint(date);
+          if (period) setSelectedPeriod(period);
         }}
         periods={periods}
         start={start}
         end={end}
-        starting_date={start_at_point}
+        selected_date={start_at_point}
       />
     </div>
   );

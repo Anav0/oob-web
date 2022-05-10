@@ -2,7 +2,7 @@ import { AdfScannerTwoTone } from "@mui/icons-material";
 import { diffInMonths } from "helpers";
 import { TimelineEvent, TimelinePeriod } from "models/types";
 import moment, { months } from "moment";
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import Period from "./period";
 
 type TimelineProps = {
@@ -10,13 +10,18 @@ type TimelineProps = {
   end: Date;
   events?: TimelineEvent[];
   periods?: TimelinePeriod[];
-  starting_date?: Date;
+  selected_date?: Date;
   onSelection?: (date: Date, period?: TimelinePeriod) => void;
 };
 export const Timeline = (props: TimelineProps) => {
-  const [selectedMonth, setSelectedMonth] = useState<number>(
-    props.starting_date ? diffInMonths(props.starting_date, props.start) : 0
-  );
+  const [selectedMonth, setSelectedMonth] = useState<number>(0);
+
+  useEffect(() => {
+    if (props.selected_date === props.start) return;
+    let x = props.selected_date ? diffInMonths(props.selected_date, props.start) : 0;
+    setSelectedMonth(x);
+    console.log(x);
+  }, [props.start, props.selected_date]);
 
   let lines = diffInMonths(props.end, props.start);
 
